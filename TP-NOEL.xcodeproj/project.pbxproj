@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2395D747276752A2004A6574 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2395D746276752A2004A6574 /* main.cpp */; };
+		2395D74F27675330004A6574 /* Produit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2395D74D27675330004A6574 /* Produit.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		2395D743276752A2004A6574 /* TP-NOEL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "TP-NOEL"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2395D746276752A2004A6574 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		2395D74D27675330004A6574 /* Produit.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Produit.cpp; sourceTree = "<group>"; };
+		2395D74E27675330004A6574 /* Produit.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Produit.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +44,8 @@
 		2395D73A276752A2004A6574 = {
 			isa = PBXGroup;
 			children = (
+				2395D74D27675330004A6574 /* Produit.cpp */,
+				2395D74E27675330004A6574 /* Produit.hpp */,
 				2395D745276752A2004A6574 /* TP-NOEL */,
 				2395D744276752A2004A6574 /* Products */,
 			);
@@ -120,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2395D747276752A2004A6574 /* main.cpp in Sources */,
+				2395D74F27675330004A6574 /* Produit.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
