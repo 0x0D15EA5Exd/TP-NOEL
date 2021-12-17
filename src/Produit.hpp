@@ -9,23 +9,31 @@
 #define Produit_hpp
 
 #include <string>
+#include <iostream>
 
 class Produit
 {
 private:
-    std::string variete;
-    std::string type;
-    int calbire;
+    std::string Variete;
+    std::string Type;
+    int Calibre;
     
 public:
     Produit();
+    ~Produit();
     Produit(std::string variete, std::string type, int calibre);
-    Produit(Produit &p);
+    Produit(const Produit &p);
     int getCalibre();
     std::string getType();
+    std::string getVariete();
     void setVariete(std::string variete);
     void setTypes(std::string type);
     void setCalibre(int calibre);
+    
+    Produit operator = (const Produit &p);
+    bool operator <(const Produit  &p) const;
+    bool operator == (const Produit &p);
+    
     
 };
 
