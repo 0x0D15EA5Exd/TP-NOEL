@@ -60,8 +60,8 @@
 		2395D745276752A2004A6574 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				2395D74D27675330004A6574 /* Produit.cpp */,
 				2395D74E27675330004A6574 /* Produit.hpp */,
+				2395D74D27675330004A6574 /* Produit.cpp */,
 				2395D746276752A2004A6574 /* main.cpp */,
 			);
 			path = src;
