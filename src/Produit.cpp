@@ -6,7 +6,7 @@
 //
 
 #include "Produit.hpp"
-
+#include <string.h>
 Produit::Produit()
 {
     this->Variete = "Not_Initialized";
@@ -76,8 +76,26 @@ bool Produit::operator==(const Produit &p) {
     return (p.Calibre == this->Calibre);
 }
 
+std::ostream& operator <<(std::ostream& os, const Produit& p)
+{
+    std::cout << "\nCalibre :  " << p.Calibre << "\nType : " << p.Type << "\nVariete : " << p.Variete << std::endl;
+    return os;
+}
 
 
+
+void menu(int * input)
+{
+    std::cout << "----------TP DE NOEL ---------";
+    std::cout << std::endl << "Option Ajouter un produit, taper 1 " <<  std::endl;
+    std::cout << "Option retirer un produit (le dernier), taper 2" << std::endl;
+    std::cout << "Option Afficher le contenu, taper 3 " << std::endl;
+    std::cout << "Pour quitter, taper 5" << std::endl;
+    
+    std::cout << "Choix : ";
+    std::cin >> *input;
+    return ;
+}
 
 
 

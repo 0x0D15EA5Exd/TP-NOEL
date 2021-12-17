@@ -33,10 +33,12 @@ public:
     Produit operator = (const Produit &p);
     bool operator <(const Produit  &p) const;
     bool operator == (const Produit &p);
+    friend std::ostream& operator <<(std::ostream& os, const Produit& p);
     
     
 };
 
+void menu(int *input);
 
 
 
