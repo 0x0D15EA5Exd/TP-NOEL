@@ -111,6 +111,7 @@ int main(int argc, const char * argv[]) {
         }
         if (input == 4) {
             listOfProducts.sort();
+            std::cout << "List is now sorted ! " << std::endl;
         }
     } while (input != 5 );
     
@@ -119,3 +120,6 @@ int main(int argc, const char * argv[]) {
 
     return 1;
 }
+
+
+
