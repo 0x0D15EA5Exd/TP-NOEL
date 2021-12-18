@@ -13,10 +13,6 @@
 
 int main(int argc, const char * argv[]) {
     std::cout << "Hello, World!\n";
-    /// Implémentation de la classe produit
-    ///
-    ///
-    ///
     /*
     Produit P1("Test", "test 2", 3);
     Produit P2 = P1;
@@ -63,9 +59,12 @@ int main(int argc, const char * argv[]) {
     
     std::vector<Produit> vectorOfProduit;
     std::list<Produit> listOfProducts;
+    
+    
     std::vector<Produit>::iterator it;
     std::list<Produit>::iterator itList;
-    /* VECTOR */
+    
+    std::map<Produit, int> mapOfProducts;
     int input(0);
     do {
         it = vectorOfProduit.begin();
@@ -116,10 +115,10 @@ int main(int argc, const char * argv[]) {
     } while (input != 5 );
     
     
-    //TT
-
-    return 1;
+    
+    return 0;
 }
 
 
 
+    
