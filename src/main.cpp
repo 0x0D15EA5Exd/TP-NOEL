@@ -9,6 +9,7 @@
 #include "Produit.hpp"
 #include <vector>
 #include <list>
+#include <map>
 
 int main(int argc, const char * argv[]) {
     std::cout << "Hello, World!\n";
@@ -73,14 +74,14 @@ int main(int argc, const char * argv[]) {
         
         if (input == 1)
         {
-            std::string tmp1, tmp2;
-            int tmp3;
-            std::cout << "\nValeur Variete : ";
-            std::cin >> tmp1;
-            std::cout << "\nValeur Type : ";
-            std::cin >> tmp2;
-            std::cout << "\nValeur Calibre : ";
-            std::cin >>  tmp3;
+            std::string tmp1 = StringGenerator(), tmp2 = StringGenerator();
+            int tmp3 = intGenerator();
+//            std::cout << "\nValeur Variete : ";
+//            std::cin >> tmp1;
+//            std::cout << "\nValeur Type : ";
+//            std::cin >> tmp2;
+//            std::cout << "\nValeur Calibre : ";
+//            std::cin >>  tmp3;
             
             vectorOfProduit.push_back(Produit(tmp1, tmp2, tmp3));
             listOfProducts.push_back(Produit(tmp1, tmp2, tmp3));
@@ -98,10 +99,12 @@ int main(int argc, const char * argv[]) {
         }
         if (input == 3 )
         {
+            std::cout << "--------------Vector--------------" << std::endl;
             for (it = vectorOfProduit.begin(); it != vectorOfProduit.end(); it++)
             {
                 std::cout << ' ' << *it;
             }
+            std::cout << "--------------List------------ " << std::endl;
             for (auto const &i: listOfProducts) {
                 std::cout << ' ' << i;
             }
@@ -109,22 +112,10 @@ int main(int argc, const char * argv[]) {
         if (input == 4) {
             listOfProducts.sort();
         }
-        if (input ==5) {
-            break;
-        }
     } while (input != 5 );
     
     
     //TT
-    
-    
-    
-    
-    
-    
-    
-    
-
 
     return 1;
 }

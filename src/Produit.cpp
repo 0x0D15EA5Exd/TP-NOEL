@@ -7,6 +7,9 @@
 
 #include "Produit.hpp"
 #include <string.h>
+#include <random>
+#include <string>
+
 Produit::Produit()
 {
     this->Variete = "Not_Initialized";
@@ -86,10 +89,11 @@ std::ostream& operator <<(std::ostream& os, const Produit& p)
 
 void menu(int * input)
 {
-    std::cout << "----------TP DE NOEL ---------";
+    std::cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n----------TP DE NOEL ---------";
     std::cout << std::endl << "Option Ajouter un produit, taper 1 " <<  std::endl;
     std::cout << "Option retirer un produit (le dernier), taper 2" << std::endl;
     std::cout << "Option Afficher le contenu, taper 3 " << std::endl;
+    std::cout << "Option pour trier la list, taper 4" << std::endl;
     std::cout << "Pour quitter, taper 5" << std::endl;
     
     std::cout << "Choix : ";
@@ -97,7 +101,28 @@ void menu(int * input)
     return ;
 }
 
-//TTT
+bool compart(Produit First, Produit Second)
+{
+    return First < Second ? true : false;
+}
 
 
+std::string StringGenerator()
+{
+    std::string tmpStr("0123456789ABCDEFGHIJKLMNOPQRTUVWXYZabcdefghijklmnopqrtuvwxyz") ;
+    std::random_device rd;
+    std::mt19937 generator(rd());
+    std::shuffle(tmpStr.begin(), tmpStr.end(), generator);
+    return tmpStr.substr(0,32);
+}
 
+int intGenerator()
+{
+    int tmpInt;
+    
+    static std::default_random_engine rd;
+    static std::mt19937 generatorXint(rd());
+    std::uniform_int_distribution<int>dist(1,100);
+    tmpInt = dist(rd);
+    return tmpInt;
+}

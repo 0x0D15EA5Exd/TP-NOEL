@@ -29,17 +29,14 @@ public:
     void setVariete(std::string variete);
     void setTypes(std::string type);
     void setCalibre(int calibre);
-    
     Produit operator = (const Produit &p);
     bool operator <(const Produit  &p) const;
     bool operator == (const Produit &p);
     friend std::ostream& operator <<(std::ostream& os, const Produit& p);
-    
-    
 };
 
 void menu(int *input);
-
-
-
+bool compart(Produit First, Produit Second);
+std::string StringGenerator();
+int intGenerator();
 #endif /* Produit_hpp */
