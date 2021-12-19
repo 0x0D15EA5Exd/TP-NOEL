@@ -6,6 +6,7 @@
 //
 
 #include <iostream>
+#include <thread>
 #include "Produit.hpp"
 #include <vector>
 #include <list>
@@ -65,16 +66,28 @@ int main(int argc, const char * argv[]) {
     std::list<Produit>::iterator itList;
     
     std::map<Produit, int> mapOfProducts;
-    int input(0);
+    std::map<Produit, int>::iterator itMap;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    int *input = new int(0);
     do {
         it = vectorOfProduit.begin();
         itList = listOfProducts.begin();
-        menu(&input);
+        menu(input);
         
-        if (input == 1)
+        if (*input == 1)
         {
             std::string tmp1 = StringGenerator(), tmp2 = StringGenerator();
-            int tmp3 = intGenerator();
+            int *tmp3 = new int(intGenerator());
+         //   int tmp3 = intGenerator();
 //            std::cout << "\nValeur Variete : ";
 //            std::cin >> tmp1;
 //            std::cout << "\nValeur Type : ";
@@ -82,21 +95,22 @@ int main(int argc, const char * argv[]) {
 //            std::cout << "\nValeur Calibre : ";
 //            std::cin >>  tmp3;
             
-            vectorOfProduit.push_back(Produit(tmp1, tmp2, tmp3));
-            listOfProducts.push_back(Produit(tmp1, tmp2, tmp3));
+            vectorOfProduit.push_back(Produit(tmp1, tmp2, *tmp3));
+            listOfProducts.push_back(Produit(tmp1, tmp2, *tmp3));
+            delete tmp3;
         }
-        if (input == 2 )
+        if (*input == 2 )
         {
             vectorOfProduit.erase(vectorOfProduit.end());
             vectorOfProduit.shrink_to_fit();
-            
+            int *tmp = new int;
             std::cout << " Supprimer un produit : ";
-            int tmp;
-            std::cin >> tmp;
-            std::advance(itList, tmp);
+            
+            std::cin >> *tmp;
+            std::advance(itList, *tmp);
             listOfProducts.erase(itList);
         }
-        if (input == 3 )
+        if (*input == 3 )
         {
             std::cout << "--------------Vector--------------" << std::endl;
             for (it = vectorOfProduit.begin(); it != vectorOfProduit.end(); it++)
@@ -108,11 +122,13 @@ int main(int argc, const char * argv[]) {
                 std::cout << ' ' << i;
             }
         }
-        if (input == 4) {
+        if (*input == 4) {
             listOfProducts.sort();
             std::cout << "List is now sorted ! " << std::endl;
         }
-    } while (input != 5 );
+    } while (*input != 5 );
+    delete input;
+    
     
     
     
