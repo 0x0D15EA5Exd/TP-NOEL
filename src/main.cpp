@@ -57,60 +57,62 @@ int main(int argc, const char * argv[]) {
     */
     
     
+    std::vector<Produit> vectorOfProduit; //Vector de Produit
+    std::list<Produit> listOfProducts; //List de produit
     
-    std::vector<Produit> vectorOfProduit;
-    std::list<Produit> listOfProducts;
     
+    std::vector<Produit>::iterator it; //itérateur pour le vector
+    std::list<Produit>::iterator itList; //itérateur pour la list
     
-    std::vector<Produit>::iterator it;
-    std::list<Produit>::iterator itList;
-    
-    std::map<Produit, int> mapOfProducts;
-    std::map<Produit, int>::iterator itMap;
-    
+    std::map<Produit, int> mapOfProducts; //Dictionnaire associatif de produit
+    std::map<Produit, int>::iterator itMap; //Itérateur pour le dictionnaire associatif
     
     
     
     
+    int *input = new int(0); // Variable permettat de naviguer dans les options
     
-    
-    
-    
-    
-    int *input = new int(0);
     do {
         it = vectorOfProduit.begin();
         itList = listOfProducts.begin();
-        menu(input);
         
-        if (*input == 1)
+        menu(input); // Fonction qui affiche le menu, prend un pointeur en paramètre.
+        
+        if (*input == 1) // Option 1 : créer un objet Produit.
         {
+            
+            //Version automatique
+            //String et entier généré automatiquement.
             std::string tmp1 = StringGenerator(), tmp2 = StringGenerator();
             int *tmp3 = new int(intGenerator());
-         //   int tmp3 = intGenerator();
-//            std::cout << "\nValeur Variete : ";
-//            std::cin >> tmp1;
-//            std::cout << "\nValeur Type : ";
-//            std::cin >> tmp2;
-//            std::cout << "\nValeur Calibre : ";
-//            std::cin >>  tmp3;
             
-            vectorOfProduit.push_back(Produit(tmp1, tmp2, *tmp3));
-            listOfProducts.push_back(Produit(tmp1, tmp2, *tmp3));
+            //int tmp3 = intGenerator();
+            /*
+            std::cout << "\nValeur Variete : ";
+            std::cin >> tmp1;
+            std::cout << "\nValeur Type : ";
+            std::cin >> tmp2;
+            std::cout << "\nValeur Calibre : ";
+            std::cin >>  tmp3;
+            */
+            
+            vectorOfProduit.push_back(Produit(tmp1, tmp2, *tmp3)); //Rajoute un vector après le dernier instancié.
+            listOfProducts.push_back(Produit(tmp1, tmp2, *tmp3)); //Rajoute un membre a la fin de la liste chainé.
+            
             delete tmp3;
         }
-        if (*input == 2 )
+        if (*input == 2 ) // Supprime un produit.
         {
-            vectorOfProduit.erase(vectorOfProduit.end());
+            vectorOfProduit.erase(vectorOfProduit.end()); //Supprime le dernier vector.
             vectorOfProduit.shrink_to_fit();
             int *tmp = new int;
-            std::cout << " Supprimer un produit : ";
             
+            std::cout << " Supprimer un produit : ";
             std::cin >> *tmp;
-            std::advance(itList, *tmp);
+            std::advance(itList, *tmp); //Déplace l'itérateur sur l'objet de la liste chainé que l'on veut supprimer.
             listOfProducts.erase(itList);
         }
-        if (*input == 3 )
+        if (*input == 3 ) // Affiche le contenu du vector et de la liste chainé
         {
             std::cout << "--------------Vector--------------" << std::endl;
             for (it = vectorOfProduit.begin(); it != vectorOfProduit.end(); it++)
@@ -122,15 +124,22 @@ int main(int argc, const char * argv[]) {
                 std::cout << ' ' << i;
             }
         }
-        if (*input == 4) {
+        if (*input == 4) // Option 4 : trie les objets de la list
+        {
             listOfProducts.sort();
             std::cout << "List is now sorted ! " << std::endl;
         }
-    } while (*input != 5 );
+    } while (*input != 5 ); // Option 5 : sortie du programme.
     delete input;
     
     
+    std::thread th1 (print_block, 50, '*');
+    std::thread th2 (print_block, 50, '$');
     
+    
+    
+    th1.join();
+    th2.join();
     
     return 0;
 }

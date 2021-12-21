@@ -36,7 +36,10 @@ public:
 };
 
 void menu(int *input);
+void thread_map_Produit_mutex_();
+void print_block(int n, char c );
 bool compart(Produit First, Produit Second);
 std::string StringGenerator();
 int intGenerator();
+
 #endif /* Produit_hpp */
