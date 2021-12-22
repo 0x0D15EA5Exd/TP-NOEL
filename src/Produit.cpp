@@ -147,9 +147,9 @@ void thread_map_Produit_mutex_() //test thread
 }
 
 
-std::mutex mtx; // mutex ?
+std::mutex mtx; // jsp pk y'a un mutex ici ?
 
-void print_block(int n, char c) // test 
+void print_block(int n, char c) // test
 {
     
 }
