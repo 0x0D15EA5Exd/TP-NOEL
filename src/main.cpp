@@ -64,10 +64,10 @@ int main(int argc, const char * argv[]) {
     std::vector<Produit>::iterator it; //itérateur pour le vector
     std::list<Produit>::iterator itList; //itérateur pour la list
     
-    std::map<Produit, int> mapOfProducts; //Dictionnaire associatif de produit
-    std::map<Produit, int>::iterator itMap; //Itérateur pour le dictionnaire associatif
+    std::map<Produit, int> mapOfProducts; //Tableau associatif de produit
+    std::map<Produit, int>::iterator itMap; //Itérateur pour le Tableau associatif
     
-    
+    mapOfProducts.insert(std::pair<Produit, int> (Produit("test,","test",3),1));
     
     
     int *input = new int(0); // Variable permettat de naviguer dans les options
@@ -86,8 +86,9 @@ int main(int argc, const char * argv[]) {
             std::string tmp1 = StringGenerator(), tmp2 = StringGenerator();
             int *tmp3 = new int(intGenerator());
             
-            //int tmp3 = intGenerator();
-            /*
+            //Version avec des valeurs de l utilisateur.
+            /*int tmp3 = intGenerator();
+            /
             std::cout << "\nValeur Variete : ";
             std::cin >> tmp1;
             std::cout << "\nValeur Type : ";
@@ -117,17 +118,17 @@ int main(int argc, const char * argv[]) {
             std::cout << "--------------Vector--------------" << std::endl;
             for (it = vectorOfProduit.begin(); it != vectorOfProduit.end(); it++)
             {
-                std::cout << ' ' << *it;
+                std::cout << ' ' << *it; // Affichage des produit contenu dans le vector
             }
             std::cout << "--------------List------------ " << std::endl;
             for (auto const &i: listOfProducts) {
-                std::cout << ' ' << i;
+                std::cout << ' ' << i; // Affichage des produits contenu dans la liste chainé
             }
         }
         if (*input == 4) // Option 4 : trie les objets de la list
         {
-            listOfProducts.sort();
-            std::cout << "List is now sorted ! " << std::endl;
+            listOfProducts.sort(); // Tri de manière coirssante les produits dans la liste en fonction de Calibre.
+            std::cout << "\n\n\n\n\nList is now sorted ! " << std::endl;
         }
     } while (*input != 5 ); // Option 5 : sortie du programme.
     delete input;
@@ -140,6 +141,11 @@ int main(int argc, const char * argv[]) {
     
     th1.join();
     th2.join();
+    
+    listOfProducts.~list(); // delete vector for memory
+    vectorOfProduit.~vector(); // same
+    mapOfProducts.~map(); //same 
+    
     
     return 0;
 }
