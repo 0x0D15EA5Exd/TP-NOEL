@@ -104,13 +104,12 @@ int main(int argc, const char * argv[]) {
         }
         if (*input == 2 ) // Supprime un produit.
         {
-            vectorOfProduit.erase(vectorOfProduit.end()); //Supprime le dernier vector.
+            vectorOfProduit.erase(vectorOfProduit.end()-1); //Supprime le dernier vector.
             vectorOfProduit.shrink_to_fit();
-            int *tmp = new int;
-            
-            std::cout << " Supprimer un produit : ";
-            std::cin >> *tmp;
-            std::advance(itList, *tmp); //Déplace l'itérateur sur l'objet de la liste chainé que l'on veut supprimer.
+            int tmp = 1;
+            std::cout << "Supprimer un produit : ";
+            std::cin >> tmp;
+            std::advance(itList, tmp-1); //Déplace l'itérateur sur l'objet de la liste chainé que l'on veut supprimer.
             listOfProducts.erase(itList);
         }
         if (*input == 3 ) // Affiche le contenu du vector et de la liste chainé
@@ -132,19 +131,11 @@ int main(int argc, const char * argv[]) {
         }
     } while (*input != 5 ); // Option 5 : sortie du programme.
     delete input;
-    
-    
-    std::thread th1 (print_block, 50, '*');
-    std::thread th2 (print_block, 50, '$');
-    
-    
-    
-    th1.join();
-    th2.join();
-    
-    listOfProducts.~list(); // delete vector for memory
+
+    std::cout << "debug";
+    //listOfProducts.~list(); // delete vector for memory
     vectorOfProduit.~vector(); // same
-    mapOfProducts.~map(); //same 
+    //mapOfProducts.~map(); //same 
     
     
     return 0;
