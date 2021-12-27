@@ -17,7 +17,7 @@ Produit::Produit() // Constucteur par défaut
     this->Variete = "Not_Initialized";
     this->Type = "Not_Initialized";
     this->Calibre = 2;
-    std::cout << "Ctor Produit called" << std::endl;
+    std::cout << "Default 1Ctor Produit called" << std::endl;
 }
 
 std::string Produit::getType() // Accesseur vers Type
@@ -70,6 +70,7 @@ void Produit::setCalibre(int calibre) // Mutatuer de Calibre
 Produit::~Produit() // Destructeur
 {
     std::cout << "Dtor Produit Called" << std::endl;
+    
 }
 
 Produit Produit::operator=(const Produit &p) // Surcharge de l'opérateur d'assignation
@@ -131,7 +132,7 @@ int intGenerator() // Génère un entier aléatoirement
 {
     int tmpInt;
     
-    static std::default_random_engine rd;
+    std::default_random_engine rd;
     static std::mt19937 generatorXint(rd());
     std::uniform_int_distribution<int>dist(1,100);
     tmpInt = dist(rd);

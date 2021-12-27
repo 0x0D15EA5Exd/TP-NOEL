@@ -99,17 +99,16 @@ int main(int argc, const char * argv[]) {
             
             vectorOfProduit.push_back(Produit(tmp1, tmp2, *tmp3)); //Rajoute un vector après le dernier instancié.
             listOfProducts.push_back(Produit(tmp1, tmp2, *tmp3)); //Rajoute un membre a la fin de la liste chainé.
-            
             delete tmp3;
         }
         if (*input == 2 ) // Supprime un produit.
         {
             vectorOfProduit.erase(vectorOfProduit.end()-1); //Supprime le dernier vector.
             vectorOfProduit.shrink_to_fit();
-            int tmp = 1;
+            int * tmp = new int;
             std::cout << "Supprimer un produit : ";
-            std::cin >> tmp;
-            std::advance(itList, tmp-1); //Déplace l'itérateur sur l'objet de la liste chainé que l'on veut supprimer.
+            std::cin >> *tmp;
+            std::advance(itList, *tmp-1); //Déplace l'itérateur sur l'objet de la liste chainé que l'on veut supprimer.
             listOfProducts.erase(itList);
         }
         if (*input == 3 ) // Affiche le contenu du vector et de la liste chainé
@@ -124,18 +123,13 @@ int main(int argc, const char * argv[]) {
                 std::cout << ' ' << i; // Affichage des produits contenu dans la liste chainé
             }
         }
-        if (*input == 4) // Option 4 : trie les objets de la list
+        if (*input == 4) // Option 4 : trie les objets de la liste chainé
         {
             listOfProducts.sort(); // Tri de manière coirssante les produits dans la liste en fonction de Calibre.
-            std::cout << "\n\n\n\n\nList is now sorted ! " << std::endl;
+            std::cout << "List is now sorted ! \n\n\n\n\n" << std::endl;
         }
     } while (*input != 5 ); // Option 5 : sortie du programme.
     delete input;
-
-    std::cout << "debug";
-    //listOfProducts.~list(); // delete vector for memory
-    vectorOfProduit.~vector(); // same
-    //mapOfProducts.~map(); //same 
     
     
     return 0;
