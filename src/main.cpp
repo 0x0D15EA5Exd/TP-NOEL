@@ -61,21 +61,22 @@ int main(int argc, const char * argv[]) {
     std::list<Produit> listOfProducts; //List de produit
     
     
-    std::vector<Produit>::iterator it; //itérateur pour le vector
+    std::vector<Produit>::iterator itVector; //itérateur pour le vector
     std::list<Produit>::iterator itList; //itérateur pour la list
     
     std::map<Produit, int> mapOfProducts; //Tableau associatif de produit
     std::map<Produit, int>::iterator itMap; //Itérateur pour le Tableau associatif
     
-    mapOfProducts.insert(std::pair<Produit, int> (Produit("test,","test",3),1));
+    //mapOfProducts.insert(std::pair<Produit, int> (Produit("test,","test",3),1)); Exemple d'insertion 
     
     
     int *input = new int(0); // Variable permettat de naviguer dans les options
     
     do {
-        it = vectorOfProduit.begin();
+        itVector = vectorOfProduit.begin();
         itList = listOfProducts.begin();
-        
+        itMap = mapOfProducts.begin();
+
         menu(input); // Fonction qui affiche le menu, prend un pointeur en paramètre.
         
         if (*input == 1) // Option 1 : créer un objet Produit.
@@ -84,8 +85,13 @@ int main(int argc, const char * argv[]) {
             //Version automatique
             //String et entier généré automatiquement.
             std::string tmp1 = StringGenerator(), tmp2 = StringGenerator();
-            int *tmp3 = new int(intGenerator());
+            int* tmp3 = new int(intGenerator());
+            int* altTmp3 = new int(1);
+            int* quantity = new int(0);
+
+            std::string altTmp1 = "Test ", altTmp2 = "Test ";
             
+
             //Version avec des valeurs de l utilisateur.
             /*int tmp3 = intGenerator();
             /
@@ -94,33 +100,69 @@ int main(int argc, const char * argv[]) {
             std::cout << "\nValeur Type : ";
             std::cin >> tmp2;
             std::cout << "\nValeur Calibre : ";
-            std::cin >>  tmp3;
+            std::cin >> *tmp3;
             */
-            
+
             vectorOfProduit.push_back(Produit(tmp1, tmp2, *tmp3)); //Rajoute un vector après le dernier instancié.
             listOfProducts.push_back(Produit(tmp1, tmp2, *tmp3)); //Rajoute un membre a la fin de la liste chainé.
-            delete tmp3;
+            
+            std::cout << " Quantite de Produit a stocker : ";
+            std::cin >> *quantity;
+            mapOfProducts.insert(std::pair<Produit, int> (Produit(tmp1, tmp2, *tmp3),*quantity)); // Permet de tester les cas : présence d'un produit déjà existant dans le dico associatif
+
+            itMap = mapOfProducts.find(Produit(altTmp1, altTmp2, *altTmp3)); // Recherche dans le conteneur un élément dont la clé est équivalente à k et renvoie un itérateur vers cet élément s'il est trouvé, sinon il renvoie un itérateur vers map::end.
+
+
+            if (itMap != mapOfProducts.end()) // Si itérateur n'est pas égal à la valeur de fin alors :
+            {
+                *quantity += itMap->second;
+                mapOfProducts.erase(itMap);
+
+                mapOfProducts.insert(std::pair<Produit, int>(Produit(altTmp1, altTmp2, *altTmp3), *quantity));
+
+                std::cout << "Il y a " << *quantity << " Produits du type " << altTmp2 << std::endl;
+               
+            }
+            else
+            {
+                mapOfProducts.insert(std::pair<Produit, int>(Produit(altTmp1, altTmp1, *altTmp3), 1));
+            }
+           
+            delete tmp3, altTmp3;
+
         }
         if (*input == 2 ) // Supprime un produit.
         {
+
             vectorOfProduit.erase(vectorOfProduit.end()-1); //Supprime le dernier vector.
             vectorOfProduit.shrink_to_fit();
+
             int * tmp = new int;
+
             std::cout << "Supprimer un produit : ";
             std::cin >> *tmp;
+
             std::advance(itList, *tmp-1); //Déplace l'itérateur sur l'objet de la liste chainé que l'on veut supprimer.
             listOfProducts.erase(itList);
+
         }
         if (*input == 3 ) // Affiche le contenu du vector et de la liste chainé
         {
-            std::cout << "--------------Vector--------------" << std::endl;
-            for (it = vectorOfProduit.begin(); it != vectorOfProduit.end(); it++)
+            std::cout << "--------------Vector------------" << std::endl;
+            for (itVector = vectorOfProduit.begin(); itVector != vectorOfProduit.end(); itVector++)
             {
-                std::cout << ' ' << *it; // Affichage des produit contenu dans le vector
+                std::cout << ' ' << *itVector; // Affichage des produit contenu dans le vector
             }
+
             std::cout << "--------------List------------ " << std::endl;
             for (auto const &i: listOfProducts) {
                 std::cout << ' ' << i; // Affichage des produits contenu dans la liste chainé
+            }
+
+            std::cout << "--------------Map------------" << std::endl;
+            for (auto it = mapOfProducts.cbegin(); it != mapOfProducts.end(); ++it)
+            {
+                std::cout << it->first << std::endl << "Quantité de produit =" << it->second << std::endl;
             }
         }
         if (*input == 4) // Option 4 : trie les objets de la liste chainé
